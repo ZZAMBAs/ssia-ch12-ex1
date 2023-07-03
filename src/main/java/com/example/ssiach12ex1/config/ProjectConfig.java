@@ -25,6 +25,12 @@ public class ProjectConfig {
         http.oauth2Login(c ->
                 c.clientRegistrationRepository(clientRepository())
         );*/
+        /* 이외에도 스프링 부트 구성 파일(application.yml)에서 직접 ClientRegistration과 ClientRegistrationRepository를 구성할 수 있다. 이를테면 깃헙일 경우,
+         spring.security.oauth2.client.registration.github.client-id=~~, ... .github.client-secret=~~ 로 작성해줄 수 있다.
+         이후에 단순히 http.oauth2Login(); 만 호출하면 끝.
+         스프링 시큐리티에 알려지지 않은 공급자(이를테면 네이버)를 이용하려면 ... .client.provider로 시작하는 속성 그룹으로 권한 부여 서버의
+         세부 정보도 기록해야 한다.
+         */
 
         http.authorizeHttpRequests(a -> {
             a.anyRequest()
